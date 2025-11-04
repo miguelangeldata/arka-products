@@ -29,11 +29,6 @@ public class ReturnPersistenceAdapter implements ReturnsPersistencePort {
     }
 
     @Override
-    public Flux<Returns> getReturnsByProductId(Long productId) {
-        return repository.getAllReturnsByProductId(productId).map(mapper::entityToDomain);
-    }
-
-    @Override
     public Flux<Returns> getReturnsByUserId(String userId) {
         return repository.getAllReturnsByUserId(userId).map(mapper::entityToDomain);
     }

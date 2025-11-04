@@ -13,5 +13,5 @@ public interface ReturnsUsesCases {
 
     Mono<Returns>getById(UUID id);
     Flux<Returns> getAllByUserId(String userId);
-    Flux<Returns> getAllReturnsByProductId(Long productId);
+
 }

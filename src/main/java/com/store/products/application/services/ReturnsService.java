@@ -83,8 +83,4 @@ public class ReturnsService implements ReturnsUsesCases {
         return persistence.getReturnsByUserId(userId);
     }
 
-    @Override
-    public Flux<Returns> getAllReturnsByProductId(Long productId) {
-        return persistence.getReturnsByProductId(productId);
-    }
 }

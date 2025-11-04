@@ -3,7 +3,9 @@ package com.store.products.infraestructure.adapaters.out.publisher;
 import com.store.products.domain.events.ReturnsAcceptedEvent;
 import com.store.products.domain.events.ReturnsRejectedEvent;
 import com.store.products.domain.ports.out.publisher.ReturnsPublisherPort;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ReturnsPublisherAdapter implements ReturnsPublisherPort {
     @Override
     public void ReturnsAccepted(ReturnsAcceptedEvent event) {

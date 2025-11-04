@@ -7,6 +7,5 @@ import reactor.core.publisher.Flux;
 import java.util.UUID;
 
 public interface ReturnsReactiveRepository extends ReactiveCrudRepository<ReturnsEntity, UUID> {
-    Flux<ReturnsEntity> getAllReturnsByProductId(Long productId);
     Flux<ReturnsEntity> getAllReturnsByUserId(String userId);
 }

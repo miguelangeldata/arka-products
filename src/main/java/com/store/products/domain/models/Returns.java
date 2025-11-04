@@ -13,7 +13,7 @@ import java.util.UUID;
 public class Returns {
     private UUID id;
     private String orderId;
-    private LocalDateTime returnedAt=LocalDateTime.now();
+    private LocalDateTime returnedAt;
     private String userId;
     private String userEmail;
     private String reason;
