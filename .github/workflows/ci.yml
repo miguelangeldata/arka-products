@@ -12,9 +12,9 @@ jobs:
       postgres:
         image: postgres:15
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: simple123
-          POSTGRES_DB: products
+            SPRING_R2DBC_URL: r2dbc:postgresql://postgres:5432/products
+            SPRING_R2DBC_USERNAME: postgres
+            SPRING_R2DBC_PASSWORD: simple123
         ports:
           - 5432:5432
         options: >-
