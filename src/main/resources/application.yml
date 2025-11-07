@@ -1,8 +1,10 @@
 server:
   port: 8081
 spring:
+  application:
+    name: products-service
   r2dbc:
-    url: r2dbc:postgresql://host.docker.internal/products
+    url: r2dbc:postgresql://localhost:5432/products
     username: postgres
     password: simple123
     initialization-mode: always
@@ -30,3 +32,49 @@ logging:
     reactor.netty.http.server: DEBUG
     reactor.netty.tcp: DEBUG
     org.springframework.web.reactive: DEBUG
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
+    instance-id: ${spring.application.name}:${server.port}
+
+springdoc:
+  packages-to-scan: com.store.products
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui
+    url: /v3/api-docs
+    config-url: /v3/api-docs/swagger-config
+    try-it-out-enabled: true
+    webjars:
+      path: /swagger-ui
+  group-configs:
+    - group: products
+      paths-to-match: /products/**
+    - group: stock history
+      paths-to-match: /stockHistory/**
+    - group: reports
+      paths-to-match: /report/**
+    - group: returns
+      paths-to-match: /returns/**
+scalar:
+  url: /v3/api-docs
+  path: /docs
+  enabled: true
+management:
+  endpoint:
+    prometheus:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
