@@ -4,7 +4,7 @@ spring:
   application:
     name: products-service
   r2dbc:
-    url: r2dbc:postgresql://localhost:5432/products
+    url: r2dbc:postgresql://host.docker.internal/products
     username: postgres
     password: simple123
     initialization-mode: always
