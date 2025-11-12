@@ -3,6 +3,7 @@ package com.store.products.application.services;
 import com.store.products.domain.exceptions.InsufficientStockException;
 import com.store.products.domain.exceptions.ProductNotFoundException;
 import com.store.products.domain.exceptions.ServiceTemporarilyUnavailableException;
+import com.store.products.domain.models.ProductMetrics;
 import com.store.products.domain.models.StockHistory;
 import com.store.products.domain.models.StockHistoryReason;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
@@ -15,6 +16,8 @@ import com.store.products.domain.ports.out.persistence.IProductPersistencePort;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.util.DoubleSummaryStatistics;
 
 @Service
 @RequiredArgsConstructor
@@ -197,4 +200,19 @@ public class ProductService implements ProductUsesCases {
                 "Service is currently unavailable: cannot check available stock."
         ));
     }
+
+    public Mono<ProductMetrics> metricsForProducts(){
+        return getAllProducts().collectList()
+                .map(products -> {
+                    Long totalProducts = (long) products.size();
+                    long totalCategoriesLong = products.stream()
+                            .map(Product::getCategory)
+                            .distinct()
+                            .count();
+                    return new ProductMetrics(
+                            totalProducts,totalCategoriesLong
+                    );
+                });
+    }
+
 }

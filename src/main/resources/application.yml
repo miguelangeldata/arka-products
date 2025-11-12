@@ -66,15 +66,3 @@ springdoc:
       paths-to-match: /report/**
     - group: returns
       paths-to-match: /returns/**
-scalar:
-  url: /v3/api-docs
-  path: /docs
-  enabled: true
-management:
-  endpoint:
-    prometheus:
-      enabled: true
-  endpoints:
-    web:
-      exposure:
-        include: prometheus

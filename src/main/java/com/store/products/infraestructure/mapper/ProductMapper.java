@@ -1,4 +1,5 @@
 package com.store.products.infraestructure.mapper;
+import com.store.products.infraestructure.adapaters.in.dto.ProductInfo;
 import org.springframework.stereotype.Component;
 
 import com.store.products.domain.models.Product;
@@ -56,6 +57,9 @@ public class ProductMapper {
             product.getDescription(),
             product.getPrice(),
             product.getTotalStock());
+    }
+    public ProductInfo productInfo(Product product){
+        return new ProductInfo(product.getName());
     }
 
 }

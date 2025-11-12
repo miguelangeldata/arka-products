@@ -2,6 +2,7 @@ package com.store.products.domain.ports.in;
 
 import com.store.products.domain.models.Product;
 
+import com.store.products.domain.models.ProductMetrics;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -18,6 +19,6 @@ public interface ProductUsesCases {
     Mono<Integer> getAvailableStock(Long productId);
     Mono<Void> recoveryStock(Long productId,Integer quantity);
     Mono<Void> recoveryStockFromReturn(Long productId,Integer quantity);
-
+    Mono<ProductMetrics> metricsForProducts();
 
 }

@@ -1,5 +1,6 @@
 package com.store.products.infraestructure.adapaters.in.controller;
 
+import com.store.products.domain.models.ProductMetrics;
 import com.store.products.infraestructure.adapaters.in.dto.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -106,6 +107,14 @@ public class ProductController {
     public Mono<AvailableStockResponse> getAvailableStock(@PathVariable Long productId) {
         return usesCases.getAvailableStock(productId)
                 .map(available -> new AvailableStockResponse(productId, available));
+    }
+    @GetMapping("/metrics")
+    public Mono<ProductMetrics> getMetricProducts(){
+        return usesCases.metricsForProducts();
+    }
+    @GetMapping("/info/{productId}")
+    public Mono<ProductInfo>getProductInfo(@PathVariable("productId")Long productId){
+        return usesCases.getProductById(productId).map(mapper::productInfo);
     }
 
 }
